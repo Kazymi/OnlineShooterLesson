@@ -16,6 +16,11 @@ public class Room : MonoBehaviourPunCallbacks
     private void Awake()
     {
         startGame.gameObject.SetActive(false);
+        startGame.onClick.AddListener(() =>
+        {
+            MainMenuWindowManager.Instance.ShowWindow(MainMenuWindowType.Loading);
+            PhotonNetwork.LoadLevel("GameScene");
+        });
         toMenuButton.onClick.AddListener(() =>
         {
             PhotonNetwork.LeaveRoom();

@@ -23,6 +23,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public override void OnConnected()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
         Debug.Log($"Photon manager connected to server {PhotonNetwork.CloudRegion}");
         if (string.IsNullOrEmpty(PhotonNetwork.NickName))
         {
