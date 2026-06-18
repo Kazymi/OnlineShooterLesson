@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
+using Unity.Services.Authentication;
 using UnityEngine;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
+    [SerializeField] private FireBaseConnected firebaseConnected;
     [SerializeField] private string region = "ru";
 
     private void Start()
@@ -25,13 +27,20 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.AutomaticallySyncScene = true;
         Debug.Log($"Photon manager connected to server {PhotonNetwork.CloudRegion}");
-        if (string.IsNullOrEmpty(PhotonNetwork.NickName))
+        TryLoadPlayerData();
+    }
+
+    private async void TryLoadPlayerData()
+    {
+        var playerData = await firebaseConnected.LoadPlayerData(AuthenticationService.Instance.PlayerId);
+        if (playerData != null && playerData.NickName != null)
         {
-            MainMenuWindowManager.Instance.ShowWindow(MainMenuWindowType.NickNameWindow);
+            PhotonNetwork.NickName = playerData.NickName;
+            MainMenuWindowManager.Instance.ShowWindow(MainMenuWindowType.MainMenuWindow);
         }
         else
         {
-            MainMenuWindowManager.Instance.ShowWindow(MainMenuWindowType.MainMenuWindow);
+            MainMenuWindowManager.Instance.ShowWindow(MainMenuWindowType.NickNameWindow);
         }
     }
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1029949609854",
+    "project_id": "onlineshooter-a75fd",
+    "storage_bucket": "onlineshooter-a75fd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029949609854:android:09d399827b7d8eb012452f",
+        "android_client_info": {
+          "package_name": "com.yauheni.onlineshooter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmhHXRZNoi3airHaqNq1f1_bhTNs3emn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
